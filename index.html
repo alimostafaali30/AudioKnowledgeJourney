@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio Knowledge Journey</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .voice-control-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .voice-control-btn.listening {
+            background-color: #dc3545;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container" role="main">
+        <h1>Audio Knowledge Journey</h1>
+        
+        <div id="instructions">
+            <button id="start-tutorial" class="main-btn" aria-label="Start Tutorial">
+                Start Tutorial (Press Space)
+            </button>
+        </div>
+
+        <div id="pin-screen" class="container">
+            <h2>Enter PIN</h2>
+            <div class="pin-entry">
+                <input type="text" id="pin-input" placeholder="Enter PIN" maxlength="6">
+                <button id="submit-pin">Submit</button>
+            </div>
+        </div>
+
+        <div id="question-form" class="container" style="display: none;">
+            <h2>Add New Question</h2>
+            <div class="form-group">
+                <label for="question-text">Question:</label>
+                <input type="text" id="question-text" placeholder="Enter question">
+            </div>
+            <div class="form-group">
+                <label for="option1">Option 1:</label>
+                <input type="text" id="option1" placeholder="Enter option 1">
+            </div>
+            <div class="form-group">
+                <label for="option2">Option 2:</label>
+                <input type="text" id="option2" placeholder="Enter option 2">
+            </div>
+            <div class="form-group">
+                <label for="option3">Option 3:</label>
+                <input type="text" id="option3" placeholder="Enter option 3">
+            </div>
+            <div class="form-group">
+                <label for="option4">Option 4:</label>
+                <input type="text" id="option4" placeholder="Enter option 4">
+            </div>
+            <div class="form-group">
+                <label for="correct-answer">Correct Answer (1-4):</label>
+                <input type="number" id="correct-answer" min="1" max="4" placeholder="Enter correct answer number">
+            </div>
+            <button id="add-question-btn" class="main-btn">Add Question</button>
+            <button id="start-game-btn" class="main-btn">Start Game</button>
+        </div>
+
+        <div id="game-container" style="display: none;">
+            <div id="level-info" aria-live="polite"></div>
+            <div id="question-container" aria-live="polite"></div>
+            <div id="options-container"></div>
+            <div id="controls">
+                <button id="play-question" class="control-btn" aria-label="Play Question (Press Q)">
+                    Play Question
+                </button>
+                <button id="play-options" class="control-btn" aria-label="Play Options (Press O)">
+                    Play Options
+                </button>
+                <button id="repeat-instructions" class="control-btn" aria-label="Repeat Instructions (Press H)">
+                    Help
+                </button>
+            </div>
+        </div>
+    </div>
+    <div id="success-screen" class="container" style="display: none;">
+        <h2>Congratulations! 🎉</h2>
+        <div class="success-message">
+            <p>You've completed all questions!</p>
+            <div class="success-buttons">
+                <button id="play-again-btn" class="main-btn">Play Again (Space)</button>
+                <button id="add-more-btn" class="main-btn">Add More Questions (P)</button>
+            </div>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html> 
